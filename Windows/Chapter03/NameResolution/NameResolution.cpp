@@ -2,7 +2,7 @@
 
 #define TESTNAME "www.google.com"
 
-// µµ¸ŞÀÎ ÀÌ¸§ -> IPv4 ÁÖ¼Ò
+// ?Â„ï§Â”???ëŒ€? -> IPv4 äºŒì‡±Â†ÂŒ
 bool GetIPAddr(const char *name, struct in_addr *addr)
 {
 	struct hostent *ptr = gethostbyname(name);
@@ -16,7 +16,7 @@ bool GetIPAddr(const char *name, struct in_addr *addr)
 	return true;
 }
 
-// IPv4 ÁÖ¼Ò -> µµ¸ŞÀÎ ÀÌ¸§
+// IPv4 äºŒì‡±Â†ÂŒ -> ?Â„ï§Â”???ëŒ€?
 bool GetDomainName(struct in_addr addr, char *name, int namelen)
 {
 	struct hostent *ptr = gethostbyaddr((const char *)&addr,
@@ -33,30 +33,30 @@ bool GetDomainName(struct in_addr addr, char *name, int namelen)
 
 int main(int argc, char *argv[])
 {
-	// À©¼Ó ÃÊ±âÈ­
+	// ?Âˆ?Â ç¥Âˆæ¹²ê³ Â™Â”
 	WSADATA wsa;
 	if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
 		return 1;
 
-	printf("µµ¸ŞÀÎ ÀÌ¸§(º¯È¯ Àü) = %s\n", TESTNAME);
+	printf("?Â„ï§Â”???ëŒ€?(è¹‚Â€?Â˜ ?Â„) = %s\n", TESTNAME);
 
-	// µµ¸ŞÀÎ ÀÌ¸§ -> IP ÁÖ¼Ò
+	// ?Â„ï§Â”???ëŒ€? -> IP äºŒì‡±Â†ÂŒ
 	struct in_addr addr;
 	if (GetIPAddr(TESTNAME, &addr)) {
-		// ¼º°øÀÌ¸é °á°ú Ãâ·Â
+		// ?ê¹ƒë‚¬?ëŒ€ãˆƒ å¯ƒê³Œë‚µ ç•°Âœ??
 		char str[INET_ADDRSTRLEN];
 		inet_ntop(AF_INET, &addr, str, sizeof(str));
-		printf("IP ÁÖ¼Ò(º¯È¯ ÈÄ) = %s\n", str);
+		printf("IP äºŒì‡±Â†ÂŒ(è¹‚Â€?Â˜ ?Â„) = %s\n", str);
 
-		// IP ÁÖ¼Ò -> µµ¸ŞÀÎ ÀÌ¸§
+		// IP äºŒì‡±Â†ÂŒ -> ?Â„ï§Â”???ëŒ€?
 		char name[256];
 		if (GetDomainName(addr, name, sizeof(name))) {
-			// ¼º°øÀÌ¸é °á°ú Ãâ·Â
-			printf("µµ¸ŞÀÎ ÀÌ¸§(´Ù½Ã º¯È¯ ÈÄ) = %s\n", name);
+			// ?ê¹ƒë‚¬?ëŒ€ãˆƒ å¯ƒê³Œë‚µ ç•°Âœ??
+			printf("?Â„ï§Â”???ëŒ€?(?ã…¼Â‹Âœ è¹‚Â€?Â˜ ?Â„) = %s\n", name);
 		}
 	}
 
-	// À©¼Ó Á¾·á
+	// ?Âˆ?Â é†«Â…çŒ·ÂŒ
 	WSACleanup();
 	return 0;
 }

@@ -6,7 +6,7 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-	// À©µµ¿ì Å¬·¡½º µî·Ï
+	// ìœˆë„ìš° í´ë˜ìŠ¤ ë“±ë¡
 	WNDCLASS wndclass;
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
 	wndclass.lpfnWndProc = WndProc;
@@ -20,14 +20,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wndclass.lpszClassName = _T("MyWndClass");
 	if (!RegisterClass(&wndclass)) return 1;
 
-	// À©µµ¿ì »ı¼º
+	// ìœˆë„ìš° ìƒì„±
 	HWND hWnd = CreateWindow(_T("MyWndClass"), _T("Simple Window"),
 		WS_OVERLAPPEDWINDOW, 0, 0, 500, 220, NULL, NULL, hInstance, NULL);
 	if (hWnd == NULL) return 1;
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
-	// ¸Ş½ÃÁö ·çÇÁ
+	// ë©”ì‹œì§€ ë£¨í”„
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0) > 0) {
 		TranslateMessage(&msg);
@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	return (int)msg.wParam;
 }
 
-// À©µµ¿ì ÇÁ·Î½ÃÀú
+// ìœˆë„ìš° í”„ë¡œì‹œì €
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg) {
